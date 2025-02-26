@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partners</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FBF5E5;
+            color: #EA4822;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #FF6600;
+            letter-spacing: 2px;
+        }
+
+        /* Scrolling Partner Section */
+        .partners-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            background: #FBF6E6;
+            padding: 20px 0;
+            border-radius: 10px;
+        }
+        .partners-container {
+            display: flex;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+        .partners {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Partner Card - Circular Shape */
+        .partner {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(360deg, #FBF5E5, #FF6600);
+            box-shadow: 0 4px 10px rgba(255, 102, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Keeps logos inside the circle */
+        }
+        .partner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(255, 102, 0, 0.4);
+        }
+
+        /* Partner Logos */
+        .partner img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain; /* Ensures logos fit without distortion */
+            border-radius: 50%; /* Makes images circular */
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+        .partner:hover img {
+            filter: brightness(200%);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Our Partners</h2>
+        <div class="partners-wrapper">
+            <div class="partners-container" id="partnersContainer">
+                <div class="partners">
+                    <a href="https://tezolutions.com/" class="partner"><img src="Picture1.png" alt="Tezolutions"></a>
+                    <a href="https://beyondrisx.com/" class="partner"><img src="Picture2.png" alt="BeyondRisk"></a>
+                    <a href="https://a4conserv.com/" class="partner"><img src="Picture3.png" alt="A4Conserv"></a>
+                    <a href="https://www.accuknox.com/" class="partner"><img src="Picture4.png" alt="AccuKnox"></a>
+                    <a href="https://threatcop.com/" class="partner"><img src="Picture5.png" alt="Threatcop"></a>
+                    <a href="https://www.finalyse.com/" class="partner"><img src="Picture6.png" alt="Finalize"></a>
+                    <a href="https://sparkfuse.in/lander" class="partner"><img src="Picture7.png" alt="Sparkfuse"></a>
+                    <a href="https://www.riskhawk.net/" class="partner"><img src="Picture8.png" alt="Dynamix"></a>
+                    <a href="https://www.techiebears.com/" class="partner"><img src="Picture9.png" alt="Techie Bears"></a>
+                    <a href="https://centle.in/about/" class="partner"><img src="Picture10.png" alt="Centle India"></a>
+                    <a href="https://www.thinkmate.com/" class="partner"><img src="Picture11.jpg" alt="Think Mate"></a>
+                    <a href="https://www.vanta.com/" class="partner"><img src="Picture12.jpeg" alt="Sakthi"></a>
+                    <a href="https://www.linkedin.com/company/techvritti/posts/?feedView=all" class="partner"><img src="Picture13.jpg" alt="TechVritti"></a>
+                    <a href="https://www.lendbox.in/" class="partner"><img src="Picture14.png" alt="LendBox"></a>
+                    <a href="https://timelycare.com/" class="partner"><img src="Picture15.png" alt="Timely Health"></a>
+                    <a href="https://hubbcast.com/" class="partner"><img src="Picture16.png" alt="Hubbcast"></a>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Infinite Scrolling with Pause on Hover
+        const container = document.getElementById('partnersContainer');
+        let scrollAmount = 0;
+        let isPaused = false;
+
+        function duplicateLogos() {
+            const original = container.children[0];
+            const clone = original.cloneNode(true);
+            container.appendChild(clone);
+        }
+        duplicateLogos(); // Duplicate the logos for smooth infinite scrolling
+
+        function scrollLogos() {
+            if (!isPaused) {
+                scrollAmount -= 1;
+                if (scrollAmount <= -container.firstElementChild.offsetWidth) {
+                    scrollAmount = 0;
+                }
+                container.style.transform = `translateX(${scrollAmount}px)`;
+            }
+            requestAnimationFrame(scrollLogos);
+        }
+        scrollLogos();
+
+        // Pause scrolling on hover
+        document.querySelectorAll('.partner').forEach(partner => {
+            partner.addEventListener('mouseenter', () => isPaused = true);
+            partner.addEventListener('mouseleave', () => isPaused = false);
+        });
+    </script>
+</body>
+</html>
